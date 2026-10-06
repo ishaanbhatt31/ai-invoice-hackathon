@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head><title>AI Invoice</title></head>
+<body>
+    <h1>AI Invoice Generator</h1>
+    <p>Describe the work:</p>
+    <textarea id="desc" rows="3" cols="40"></textarea><br><br>
+    <button onclick="generate()">Generate Invoice</button>
+
+    <div id="result" style="display:none; margin-top:20px;">
+        <p><b>Invoice:</b></p>
+        <pre id="invoiceText"></pre>
+        <p><b>Hash:</b> <span id="hashText"></span></p>
+        <p>Enter your wallet address:</p>
+        <input id="walletAddr" size="40" placeholder="0x...">
+        <br><br>
+        <button onclick="store()">Store on Blockchain</button>
+        <p id="txStatus"></p>
+    </div>
+
+    <script>
+        let currentHash = "";
+        async function generate() {
+            const desc = document.getElementById('desc').value;
+            const res = await fetch('http://localhost:5000/generate', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({description: desc})
+            });
+            const data = await res.json();
+            currentHash = data.hash;
+            document.getElementById('invoiceText').innerText = data.invoice_data;
+            document.getElementById('hashText').innerText = currentHash;
+            document.getElementById('result').style.display = 'block';
+        }
+        async function store() {
+            const wallet = document.getElementById('walletAddr').value;
+            document.getElementById('txStatus').innerText = "Sending...";
+            const res = await fetch('http://localhost:5000/store', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({hash: currentHash, client_address: wallet})
+            });
+            const data = await res.json();
+            document.getElementById('txStatus').innerHTML =
+                `Done! <a href="https://sepolia.etherscan.io/tx/${data.tx_hash}" target="_blank">View on Etherscan</a>`;
+        }
+    </script>
+</body>
+</html>

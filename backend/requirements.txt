@@ -1,5 +1,5 @@
 flask
 flask-cors
 web3
-openai
+groq
 python-dotenv

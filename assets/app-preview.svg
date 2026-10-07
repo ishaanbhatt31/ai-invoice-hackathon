@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 680" width="100%" height="auto" style="background:#090d16; border-radius:12px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000000" flood-opacity="0.5" />
+    </filter>
+    <linearGradient id="btnGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#2563eb" />
+      <stop offset="100%" stop-color="#4f46e5" />
+    </linearGradient>
+    <linearGradient id="btnGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#059669" />
+      <stop offset="100%" stop-color="#10b981" />
+    </linearGradient>
+  </defs>
+
+  <!-- Browser Window Frame -->
+  <rect x="30" y="30" width="940" height="620" rx="10" fill="#0f172a" stroke="#334155" stroke-width="1.5" filter="url(#cardShadow)" />
+  
+  <!-- Window Top Bar -->
+  <path d="M 30 40 Q 30 30 40 30 L 960 30 Q 970 30 970 40 L 970 70 L 30 70 Z" fill="#1e293b" />
+  <circle cx="55" cy="50" r="6" fill="#ef4444" />
+  <circle cx="75" cy="50" r="6" fill="#f59e0b" />
+  <circle cx="95" cy="50" r="6" fill="#10b981" />
+
+  <!-- URL Bar -->
+  <rect x="220" y="40" width="560" height="22" rx="11" fill="#0f172a" stroke="#475569" stroke-width="1" />
+  <text x="500" y="55" fill="#94a3b8" font-size="11" text-anchor="middle">http://127.0.0.1:8000 — AI Invoice Generator (Sepolia Testnet)</text>
+
+  <!-- App Header -->
+  <text x="60" y="115" fill="#f8fafc" font-size="24" font-weight="700">⚡ AI Invoice Generator</text>
+  <text x="60" y="140" fill="#94a3b8" font-size="14">Enter client project terms to generate an itemized invoice and anchor its SHA-256 fingerprint on Sepolia.</text>
+
+  <!-- Step 1: Input Section -->
+  <text x="60" y="180" fill="#cbd5e1" font-size="13" font-weight="600">Describe the work:</text>
+  <rect x="60" y="195" width="880" height="65" rx="6" fill="#1e293b" stroke="#475569" stroke-width="1" />
+  <text x="75" y="222" fill="#f1f5f9" font-size="13">Logo &amp; Brand Identity Design for Web3 dApp, 2 rounds of revisions,交付: SVG + PNG, Fee: 0.05 ETH</text>
+
+  <!-- Generate Button -->
+  <rect x="60" y="275" width="170" height="36" rx="6" fill="url(#btnGrad)" />
+  <text x="145" y="298" fill="#ffffff" font-size="13" font-weight="600" text-anchor="middle">✨ Generate Invoice</text>
+
+  <!-- Step 2: Result Section -->
+  <g transform="translate(60, 330)">
+    <!-- Result Container -->
+    <rect x="0" y="0" width="880" height="280" rx="8" fill="#131e33" stroke="#2563eb" stroke-dasharray="4 2" stroke-width="1" />
+    
+    <!-- Invoice Preview Card -->
+    <rect x="20" y="18" width="500" height="150" rx="6" fill="#0b1120" stroke="#334155" stroke-width="1" />
+    <text x="35" y="42" fill="#38bdf8" font-size="12" font-weight="700">INVOICE #INV-2026-0042</text>
+    <text x="35" y="62" fill="#94a3b8" font-size="11">Date: October 7, 2026 | Due: Upon Receipt</text>
+    <line x1="35" y1="72" x2="505" y2="72" stroke="#1e293b" stroke-width="1" />
+    <text x="35" y="92" fill="#e2e8f0" font-size="11">Item: Brand Identity &amp; Logo System</text>
+    <text x="460" y="92" fill="#e2e8f0" font-size="11" text-anchor="end">0.050 ETH</text>
+    <text x="35" y="112" fill="#94a3b8" font-size="11">Deliverables: Vector Assets, Guidelines</text>
+    <line x1="35" y1="124" x2="505" y2="124" stroke="#1e293b" stroke-width="1" />
+    <text x="35" y="145" fill="#f8fafc" font-size="12" font-weight="700">Total Due:</text>
+    <text x="460" y="145" fill="#10b981" font-size="12" font-weight="700" text-anchor="end">0.050 ETH (~$120.00)</text>
+
+    <!-- Right Side: Cryptographic & Blockchain Action -->
+    <g transform="translate(540, 18)">
+      <!-- SHA-256 Box -->
+      <rect x="0" y="0" width="320" height="60" rx="6" fill="#0b1120" stroke="#475569" stroke-width="1" />
+      <text x="12" y="22" fill="#f59e0b" font-size="11" font-weight="700">🔒 SHA-256 HASH (Integrity Seal):</text>
+      <text x="12" y="44" fill="#a7f3d0" font-size="10" font-family="'Courier New', monospace">7c3e8a91bc74...5d10a90e3f</text>
+
+      <!-- Wallet Input -->
+      <text x="0" y="85" fill="#cbd5e1" font-size="12" font-weight="600">Client / Issuer Wallet Address:</text>
+      <rect x="0" y="95" width="320" height="34" rx="6" fill="#0b1120" stroke="#475569" stroke-width="1" />
+      <text x="12" y="117" fill="#94a3b8" font-size="11" font-family="'Courier New', monospace">0x71C...B29f</text>
+
+      <!-- Store on Blockchain Button -->
+      <rect x="0" y="140" width="180" height="34" rx="6" fill="url(#btnGrad2)" />
+      <text x="90" y="162" fill="#ffffff" font-size="12" font-weight="700" text-anchor="middle">⛓️ Store on Blockchain</text>
+    </g>
+
+    <!-- Bottom Status Notification -->
+    <rect x="20" y="185" width="840" height="75" rx="6" fill="#064e3b" stroke="#10b981" stroke-width="1" opacity="0.9" />
+    <circle cx="45" cy="222" r="14" fill="#10b981" />
+    <text x="45" y="227" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">✓</text>
+    <text x="75" y="215" fill="#ecfdf5" font-size="13" font-weight="700">Transaction Confirmed on Sepolia Testnet!</text>
+    <text x="75" y="238" fill="#a7f3d0" font-size="12">TX Hash: 0x3d49f...c782  •  Block #6924110  •  Gas: 200,000</text>
+    <text x="730" y="225" fill="#38bdf8" font-size="12" font-weight="700" text-decoration="underline">View on Sepolia Etherscan ↗</text>
+  </g>
+</svg>

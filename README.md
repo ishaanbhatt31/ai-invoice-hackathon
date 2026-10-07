@@ -70,22 +70,22 @@ flowchart TD
     subgraph External["🌐 External Services & Blockchain"]
         Groq["⚡ Groq API (gpt-oss-120b)"]
         RPC["📡 Sepolia RPC Provider (PublicNode)"]
-        Contract["📜 InvoiceRegistry Smart Contract\n0x95F22200f17be6B6E5Cb7309ddB22a907C6ccd40"]
+        Contract["📜 InvoiceRegistry Smart Contract<br/>0x95F22200f17be6B6E5Cb7309ddB22a907C6ccd40"]
         Etherscan["🔍 Sepolia Etherscan Explorer"]
     end
 
-    Input -->|1. Prompt Description| GenRoute
-    GenRoute -->|2. Chat Completion Request| Groq
-    Groq -->|3. Formatted Invoice Text| GenRoute
-    GenRoute -->|4. Compute SHA-256| Hasher
-    Hasher -->|5. Return {invoice_data, hash}| Display
+    Input -->|"1. Prompt Description"| GenRoute
+    GenRoute -->|"2. Chat Completion Request"| Groq
+    Groq -->|"3. Formatted Invoice Text"| GenRoute
+    GenRoute -->|"4. Compute SHA-256"| Hasher
+    Hasher -->|"5. Return Invoice Data & Hash"| Display
 
-    Display -->|6. Send Hash & Wallet| StoreRoute
-    StoreRoute -->|7. Build & Sign TX with Private Key| Web3Signer
-    Web3Signer -->|8. Broadcast Raw TX via RPC| RPC
-    RPC -->|9. Execute storeHash()| Contract
-    StoreRoute -->|10. Return tx_hash| Display
-    Display -->|11. Verify On-Chain| Etherscan
+    Display -->|"6. Send Hash & Wallet Address"| StoreRoute
+    StoreRoute -->|"7. Build & Sign TX with Private Key"| Web3Signer
+    Web3Signer -->|"8. Broadcast Raw TX via RPC"| RPC
+    RPC -->|"9. Execute storeHash function"| Contract
+    StoreRoute -->|"10. Return tx_hash"| Display
+    Display -->|"11. Verify On-Chain"| Etherscan
 ```
 
 ---
@@ -103,20 +103,20 @@ sequenceDiagram
     participant Contract as ⛓️ Sepolia Contract
 
     User->>Frontend: Types prompt ("Web design for 0.1 ETH")
-    Frontend->>Backend: POST /generate { description }
+    Frontend->>Backend: POST /generate with prompt description
     Backend->>Groq: Generate formatted invoice
     Groq-->>Backend: Returns professional invoice text
     Backend->>Backend: Computes SHA-256 hash
-    Backend-->>Frontend: { invoice_data, hash }
+    Backend-->>Frontend: Returns invoice text and hash
     Frontend-->>User: Displays draft invoice & SHA-256 seal
 
     User->>Frontend: Enters wallet address & clicks "Store on Blockchain"
-    Frontend->>Backend: POST /store { hash, client_address }
+    Frontend->>Backend: POST /store with hash & client address
     Backend->>Web3: Builds & signs raw tx (calls storeHash)
     Web3->>Contract: Broadcasts transaction to Sepolia testnet
     Contract-->>Web3: Transaction mined (Emits HashStored event)
     Web3-->>Backend: Returns transaction receipt
-    Backend-->>Frontend: { tx_hash }
+    Backend-->>Frontend: Returns confirmed tx_hash
     Frontend-->>User: Shows confirmed Sepolia Etherscan link
 ```
 
